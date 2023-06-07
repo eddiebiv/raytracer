@@ -6,7 +6,7 @@
 
 class sphere : public hittable {        // sphere class for rendering
     public:
-        sphere() {}
+        sphere() {}     // sphere constructor
         sphere(point3 cen, double r) : center(cen), radius(r) {};
 
         virtual bool hit(
@@ -37,7 +37,8 @@ bool sphere::hit(const ray& r, double t_min, double t_max, hit_record& rec) cons
 
     rec.t = root;
     rec.p = r.at(rec.t);
-    rec.normal = (rec.p - center) / radius;
+    vec3 outward_normal = (rec.p - center) / radius;        // find normal
+    rec.set_face_normal(r, outward_normal);
 
     return true;
 }
