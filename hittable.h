@@ -2,10 +2,14 @@
 #define HITTABLE_H
 
 #include "ray.h"
+#include "rtweekend.h"
+
+class material;
 
 struct hit_record {
     point3 p;
     vec3 normal;
+    shared_ptr<material> mat_ptr;       // material pointer
     double t;
     bool front_face;        // normals always point outward from the surface, or always point against the incident ray
 
